@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <title>Formulario de Reservación</title>
+    <style>
+        .form-container{
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-info text-white text-center p-3">
+        <div>
+            <h1>Reserva de Habitación</h1>
+        </div>
+    </header>
+    <main class="d-flex justify-content-center align-items-center">
+        <div>
+            <!-- formulario -->
+            <div class="form-container bg-light p-5 rounded shadow">
+                <form action="" class="">
+                    <div class="mb-3">
+                        <label for="run">Run:</label>
+                        <input type="text" id="run" name="run" placeholder="Igresa tu RUN" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu Nombre" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu Apellido" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Ingresa tu Email" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="number" id="telefono" name="telefono" placeholder="Ingresa tu Teléfono" class="form-control" maxlength=12 required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="radio" id="fumador" name="fumador" value="fumador" class="form-check-input" required>
+                            <label for="fumador" class="form-check-label">Fumador</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="noFumador" name="fumador" value="noFumador" class="form-check-input" required>
+                            <label for="noFumador" class="form-check-label">No Fumador</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipoHabitacion">Tipo de Habitación:</label>
+                        <select id="tipoHabitacion" name="tipoHabitacion" class="form-control">
+                            <option value="habitacionSimple">Habitación Simple</option>
+                            <option value="habitacionDoble">Habitación Doble</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fechaIngreso">Fecha de Ingreso:</label>
+                    <input type="date" id="fechaIngreso" name="fechaIngreso" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fechaSalida">Fecha de Salida:</label>
+                        <input type="date" id="fechaSalida" name="fechaSalida" class="form-control" required>
+                    </div>
+                    
+                    
+                    <div class="form-label">
+                        <label for="comodidades">Otras Comodidades:</label>
+                        <div class="mb-3">
+                            <input type="checkbox" id="vistaMar" name="comodidades" value="vistaMar" class="form-check-input">
+                            <label for="vistaMar" class="form-check-label">Vista Al Mar</label>
+                            <input type="checkbox" id="jacuzzi" name="comodidades" value="jacuzzi" class="form-check-input">
+                            <label for="jacuzzi" class="form-check-label">Jacuzzi</label>
+                            <input type="checkbox" id="miniBar" name="comodidades" value="miniBar" class="form-check-input">
+                            <label for="miniBar" class="form-check-label">Mini Bar</label>
+                        </div>
+                    <div class= "d-flex justify-content-center p-4">
+                        <button type="submit" class="btn btn-primary rounded shadow">Ingresar</button>
+                    <button type="reset" class="btn btn-danger rounded shadow">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+        </main>
+        </div>
+
+    
+        <!-- tabla de datos guardados -->
+        <footer class="bg-dark text-white text-center p-3">
+            <div class="container">
+                <h2>Reservas Realizadas</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-dark" id="tablaReservas">
+                        <tr>
+                            <th>Run</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Fumador</th>
+                            <th>Tipo de Habitación</th>
+                            <th>Fecha de Ingreso</th>
+                            <th>Fecha de Salida</th>
+                            <th>Otras Comodidades</th>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+        </footer>
+    
+</body>
+</html>
