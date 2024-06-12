@@ -69,6 +69,8 @@ opcionesRadio.forEach(opcion => {
 });
 
 
+
+
 const validaEmail = (email) => {
     const formato = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
     if (!formato.test(email))
@@ -97,4 +99,17 @@ const validaRun = (run) => {
         }
     }
     return Fn.validaRut(run)
+}
+
+
+const limpiar = () => {
+    document.querySelector('form').reset()
+    document.querySelectorAll('.form-control').forEach(item => {
+        item.classList.remove('is-invalid')
+        item.classList.remove('is-valid')
+        document.getElementById('e-' + item.name).innerHTML = ''
+    })
+    //volver a la normalidad run y btnGuardar
+    document.getElementById('run').readOnly = false
+    document.getElementById('btnGuardar').value = 'Guardar'
 }
