@@ -22,44 +22,44 @@
                     <div class="mb-3">
                         <label for="run">Run:</label>
                         <input type="text" id="run" name="run" placeholder="Ingresa tu RUN" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-run" class="invalid-feedback"></div>
+                        <div id="e-run"></div>
                     </div>
                     <!-- NOMBRE -->
                     <div class="mb-3">
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu Nombre" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-nombre" class="invalid-feedback"></div>
+                        <div id="e-nombre"></div>
                     </div>
                     <!-- APELLIDO -->
                     <div class="mb-3">
                         <label for="apellido">Apellido:</label>
                         <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu Apellido" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-apellido" class="invalid-feedback"></div>
+                        <div id="e-apellido"></div>
                     </div>
                     <!-- EMAIL -->
                     <div class="mb-3">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Ingresa tu Email" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-email" class="invalid-feedback"></div>
+                        <div id="e-email"></div>
                     </div>
                     <!-- TELEFONO -->
                     <div class="mb-3">
                         <label for="telefono">Teléfono:</label>
                         <input type="number" id="telefono" name="telefono" placeholder="Ingresa tu Teléfono" class="form-control" maxlength="12" onblur="verificar(this.id)" required>
-                        <div id="e-telefono" class="invalid-feedback"></div>
+                        <div id="e-telefono"></div>
                     </div>
                     <!-- FUMADOR/NOFUMADOR -->
                     <div class="mb-3">
                         <label>Fumador:</label>
                         <div class="form-check">
-                            <input type="radio" id="fumador" name="fumador" value="Fumador" class="form-check-input" onchange="verificar('fumador')" required>
+                            <input type="radio" id="fumador" name="fumador" value="Fumador" class="form-check-input" onchange="verificar(this.id)" required>
                             <label for="fumador" class="form-check-label">Fumador</label>
-                            <div id="e-fumador" class="invalid-feedback"></div>
+                            <div id="e-fumador"></div>
                         </div>
                         <div class="form-check">
-                            <input type="radio" id="noFumador" name="fumador" value="No Fumador" class="form-check-input" onchange="verificar('noFumador')" required>
+                            <input type="radio" id="noFumador" name="fumador" value="No Fumador" class="form-check-input" onchange="verificar(this.id)" required>
                             <label for="noFumador" class="form-check-label">No Fumador</label>
-                            <div id="e-noFumador" class="invalid-feedback"></div>
+                            <div id="e-noFumador"></div>
                         </div>
                     </div>
                     <!-- TIPOHABITACION -->
@@ -69,32 +69,32 @@
                             <option value="Simple">Habitación Simple</option>
                             <option value="Doble">Habitación Doble</option>
                         </select>
-                        <div id="e-tipoHabitacion" class="invalid-feedback"></div>
+                        <div id="e-tipoHabitacion"></div>
                     </div>
                     <!-- FECHA INGRESO -->
                     <div class="mb-3">
                         <label for="fechaIngreso">Fecha de Ingreso:</label>
                         <input type="date" id="fechaIngreso" name="fechaIngreso" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-fechaIngreso" class="invalid-feedback"></div>
+                        <div id="e-fechaIngreso"></div>
                     </div>
                     <!-- FECHA SALIDA -->
                     <div class="mb-3">
                         <label for="fechaSalida">Fecha de Salida:</label>
                         <input type="date" id="fechaSalida" name="fechaSalida" class="form-control" onblur="verificar(this.id)" required>
-                        <div id="e-fechaSalida" class="invalid-feedback"></div>
+                        <div id="e-fechaSalida"></div>
                     <!-- COMODIDADES -->
                     <div class="form-label">
                         <label for="comodidades">Otras Comodidades:</label>
                         <div class="mb-3">
-                            <input type="checkbox" id="vistaMar" name="comodidades" value="Vista al Mar" class="form-check-input" onchange="verificar('vistaMar')">
+                            <input type="checkbox" id="vistaMar" name="comodidades" value="Vista al Mar" class="form-check-input" onchange="verificar(this.id)">
                             <label for="vistaMar" class="form-check-label">Vista Al Mar</label>
-                            <div id="e-vistaMar" class="invalid-feedback"></div>
-                            <input type="checkbox" id="jacuzzi" name="comodidades" value="Jacuzzi" class="form-check-input" onchange="verificar('jacuzzi')">
+                            <div id="e-vistaMar"></div>
+                            <input type="checkbox" id="jacuzzi" name="comodidades" value="Jacuzzi" class="form-check-input" onchange="verificar(this.id)">
                             <label for="jacuzzi" class="form-check-label">Jacuzzi</label>
-                            <div id="e-jacuzzi" class="invalid-feedback"></div>
-                            <input type="checkbox" id="miniBar" name="comodidades" value="Mini Bar" class="form-check-input" onchange="verificar('miniBar')">
+                            <div id="e-jacuzzi"></div>
+                            <input type="checkbox" id="miniBar" name="comodidades" value="Mini Bar" class="form-check-input" onchange="verificar(this.id)">
                             <label for="miniBar" class="form-check-label">Mini Bar</label>
-                            <div id="e-miniBar" class="invalid-feedback"></div>
+                            <div id="e-miniBar"></div>
                         </div>
                     </div>
                     <div class= "d-flex justify-content-center p-4">
@@ -135,5 +135,6 @@
         </footer>
         <script src="utilidades.js"></script>
         <script src="funciones.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
