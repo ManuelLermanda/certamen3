@@ -9,7 +9,7 @@ document.getElementById('btnGuardar').addEventListener('click', () => {
     });
 
     // Verificar si existen estilos en rojo (is-invalid)
-    if (document.querySelectorAll('.is-invalid').length === 0) {
+    if (document.querySelectorAll('.is-invalid').length == 0) {
         const reserva = {
             run: document.getElementById('run').value,
             nombre: document.getElementById('nombre').value.trim(),
@@ -23,16 +23,16 @@ document.getElementById('btnGuardar').addEventListener('click', () => {
             comodidades: Array.from(document.querySelectorAll('input[name="comodidades"]:checked')).map(cb => cb.value)
         };
 
-        if (document.getElementById('btnGuardar').value === 'Guardar') {
+        if (document.getElementById('btnGuardar').value == 'Guardar') {
             save(reserva);
         } else {
             edit(id, reserva);
             id = 0;
         }
-
         limpiar();
     }
-});
+})
+
 //DOMContentLoaded es una evento que se activa al recargar la página
 window.addEventListener('DOMContentLoaded', () => {
     //función que recibe los datos de la db 
@@ -96,15 +96,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 const e = reserva.data()
                 //pasar valores a los inputs
                 document.getElementById('run').value = e.run
-                document.getElementById('nombre').value = e.nom
-                document.getElementById('apellido').value = e.ape
+                document.getElementById('nombre').value = e.nombre
+                document.getElementById('apellido').value = e.apellido
                 document.getElementById('email').value = e.email
-                document.getElementById('telefono').value = e.fono
-                document.getElementsByName('fumador').value = e.fum
-                document.getElementById('tipoHabitacion').value = e.habi
-                document.getElementById('fechaIngreso').value = e.fechaIn
-                document.getElementById('fechaSalida').value = e.fechaSa
-                document.getElementsByName('comodidades').value = e.com
+                document.getElementById('telefono').value = e.telefono
+                document.getElementsByid('fumador').value = e.fumador
+                document.getElementById('tipoHabitacion').value = e.tipoHabitacion
+                document.getElementById('fechaIngreso').value = e.fechaIngreso
+                document.getElementById('fechaSalida').value = e.fechaSalida
+                document.getElementsByid('comodidades').value = e.comodidades
                 //cambiar el botón a editar
                 document.getElementById('btnGuardar').value = 'Editar'
                 //solo lectura el run
