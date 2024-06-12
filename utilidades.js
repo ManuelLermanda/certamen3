@@ -1,48 +1,59 @@
 
 const verificar = (id) => {
-    const input = document.getElementById(id)
-    const div = document.getElementById('e-' + id)
-    input.classList.remove('is-invalid')
-    if (input.value.trim() == '') {
-        input.classList.add('is-invalid')
-        div.innerHTML = '<span class="badge bg-danger">Debe completar este campo para continuar.</span>'
+    const input = document.getElementById(id);
+    const div = document.getElementById('e-' + id);
+
+    if (!div) {
+        console.warn(`Elemento de error con ID e-${id} no encontrado`);
+        return;
     }
-    else {
-        input.classList.add('is-valid')
-        div.innerHTML = ''
 
+    input.classList.remove('is-invalid');
+    input.classList.remove('is-valid');
 
+    if (input.value.trim() === '') {
+        input.classList.add('is-invalid');
+        div.innerHTML = '<span class="badge bg-danger">Debe completar este campo para continuar.</span>';
+    } else {
+        input.classList.add('is-valid');
+        div.innerHTML = '';
+
+        // Validaciones adicionales
         if (id == 'fechaIngreso') {
-            const fecha = new Date(input.value)
-            const hoy = new Date()
+            const fecha = new Date(input.value);
+            const hoy = new Date();
             hoy.setHours(0, 0, 0, 0);
             if (fecha < hoy) {
-                input.classList.add('is-invalid')
-                div.innerHTML = '<span class="badge bg-danger">La fecha ingresada es inválida.</span>'
-            }
-        }
-        if (id == 'fechaSalida'){
-            const fechaIngreso = (document.getElementById('fechaIngreso').value);
-            const fechaSalida = (input.value);
-            if(fechaSalida < fechaIngreso){
                 input.classList.add('is-invalid');
-                div.innerHTML = '<span class="badge bg-danger">La fecha de salida no puede ser anterior a la de fecha entrada.</span>'
+                div.innerHTML = '<span class="badge bg-danger">La fecha ingresada es inválida.</span>';
             }
         }
+
+        if (id == 'fechaSalida') {
+            const fechaIngreso = document.getElementById('fechaIngreso').value;
+            const fechaSalida = input.value;
+            if (fechaSalida < fechaIngreso) {
+                input.classList.add('is-invalid');
+                div.innerHTML = '<span class="badge bg-danger">La fecha de salida no puede ser anterior a la de entrada.</span>';
+            }
+        }
+
         if (id == 'run') {
-            if (!validaRun(input.value)){
-                input.classList.add('is-invalid')
-                div.innerHTML = '<span class="badge bg-danger">El run no es válido.</span>'
+            if (!validaRun(input.value)) {
+                input.classList.add('is-invalid');
+                div.innerHTML = '<span class="badge bg-danger">El run no es válido.</span>';
             }
         }
+
         if (id == 'email') {
             if (!validaEmail(input.value)) {
-                input.classList.add('is-invalid')
-                div.innerHTML = '<span class="badge bg-danger">El email no tiene el formato correcto.</span>'
+                input.classList.add('is-invalid');
+                div.innerHTML = '<span class="badge bg-danger">El email no tiene el formato correcto.</span>';
             }
         }
     }
 }
+
 
 const opcionesRadio = document.querySelectorAll('input[name="fumador"]');
 

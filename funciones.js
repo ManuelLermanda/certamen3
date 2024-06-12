@@ -3,30 +3,36 @@ import { edit, getData, remove, save, selectOne } from "./firestore.js"
 let id = 0
 //addEventListener permite ejecutar la función cuando se haga click 
 document.getElementById('btnGuardar').addEventListener('click', () => {
-    document.querySelectorAll('.form-control').forEach(item => {
-        verificar(item.id)
-    })
-    //verificar si existen estilos en rojo(is-invalid)
-    if (document.querySelectorAll('.is-invalid').length == 0) {
-        const persona = {
+    // Verificar todos los elementos con form-control y form-check-input
+    document.querySelectorAll('.form-control, .form-check-input').forEach(item => {
+        verificar(item.id);
+    });
+
+    // Verificar si existen estilos en rojo (is-invalid)
+    if (document.querySelectorAll('.is-invalid').length === 0) {
+        const reserva = {
             run: document.getElementById('run').value,
-            nom: document.getElementById('nombre').value.trim(),
-            ape: document.getElementById('apellido').value.trim(),
-            fecha: document.getElementById('fechaIngreso').value,
+            nombre: document.getElementById('nombre').value.trim(),
+            apellido: document.getElementById('apellido').value.trim(),
             email: document.getElementById('email').value,
-            fono: document.getElementById('fono').value,
-            sueldo: document.getElementById('sueldo').value
+            telefono: document.getElementById('telefono').value,
+            fumador: document.querySelector('input[name="fumador"]:checked') ? document.querySelector('input[name="fumador"]:checked').value : null,
+            tipoHabitacion: document.getElementById('tipoHabitacion').value,
+            fechaIngreso: document.getElementById('fechaIngreso').value,
+            fechaSalida: document.getElementById('fechaSalida').value,
+            comodidades: Array.from(document.querySelectorAll('input[name="comodidades"]:checked')).map(cb => cb.value)
+        };
+
+        if (document.getElementById('btnGuardar').value === 'Guardar') {
+            save(reserva);
+        } else {
+            edit(id, reserva);
+            id = 0;
         }
-        if (document.getElementById('btnGuardar').value == 'Guardar') {
-            save(persona)
-        } 
-        else{
-            edit(id,persona)
-            id = 0
-        }
-        limpiar()
+
+        limpiar();
     }
-})
+});
 //DOMContentLoaded es una evento que se activa al recargar la página
 window.addEventListener('DOMContentLoaded', () => {
     //función que recibe los datos de la db 
@@ -38,15 +44,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
             tabla += `<tr>
             <td>${item.run}</td>
-            <td>${item.nom}</td>
-            <td>${item.ape}</td>
+            <td>${item.nombre}</td>
+            <td>${item.apellido}</td>
             <td>${item.email}</td>
-            <td>${item.fono}</td>
-            <td>${item.fum}</td>
-            <td>${item.habi}</td>
-            <td>${item.fechaIn}</td>
-            <td>${item.fechaSa}</td>
-            <td>${item.como}</td>
+            <td>${item.telefono}</td>
+            <td>${item.fumador}</td>
+            <td>${item.tipoHabitacion}</td>
+            <td>${item.fechaIngreso}</td>
+            <td>${item.fechaSalida}</td>
+            <td>${item.comodidades}</td>
             <td nowrap>
                 <button class="btn btn-warning" id="${doc.id}">Editar</button>
                 <button class="btn btn-danger" id="${doc.id}">Eliminar</button>
