@@ -45,3 +45,13 @@ export const edit = (id, emp) => {
   //updateDoc es la función de firestore que permite modificar un documento
   updateDoc(doc(db, 'Reserva', id), emp) //emp contiene los datos que reemplazarán el documento
 }
+
+export const verificaRunUnico = async (run) => {
+  try {
+      const snapshot = await firebase.firestore().collection('Reserva').where('run', '==', run).get()
+      return snapshot.empty; // Devuelve true si no hay documentos con ese RUN, false si ya existe
+  } catch (error) {
+      console.error('Error al verificar RUN único:', error)
+      return false; // En caso de error, también se puede considerar como no único por seguridad
+  }
+}

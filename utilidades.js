@@ -1,61 +1,78 @@
 
 const verificar = (id) => {
-    const input = document.getElementById(id);
-    const div = document.getElementById('e-' + id);
+    const input = document.getElementById(id)
+    const div = document.getElementById('e-' + id)
 
-    if (!div) {
-        console.warn(`Elemento de error con ID e-${id} no encontrado`);
-        return;
-    }
 
-    input.classList.remove('is-invalid');
-    input.classList.remove('is-valid');
+    input.classList.remove('is-invalid')
+    input.classList.remove('is-valid')
 
-    if (input.value.trim() === '') {
-        input.classList.add('is-invalid');
-        div.innerHTML = '<span class="badge bg-danger">Debe completar este campo para continuar.</span>';
+    if (input.type === 'radio') {
+        // Validar radio
+        const radioGroupName = input.name;
+        const radios = document.querySelectorAll(`input[name="${radioGroupName}"]`)
+        let radioSelected = false
+
+        radios.forEach(radio => {
+            if (radio.checked) {
+                radioSelected = true
+            }
+        })
+
+        if (!radioSelected) {
+            input.classList.add('is-invalid')
+            div.innerHTML = '<span class="badge bg-danger">Debe seleccionar una opción para continuar.</span>'
+        } else {
+            input.classList.add('is-valid')
+            div.innerHTML = ''
+        }
     } else {
-        input.classList.add('is-valid');
-        div.innerHTML = '';
+        // Validar otros tipos de input (texto, select, etc.)
+        if (input.value.trim() === '') {
+            input.classList.add('is-invalid')
+            div.innerHTML = '<span class="badge bg-danger">Debe completar este campo para continuar.</span>'
+        } else {
+            input.classList.add('is-valid');
+            div.innerHTML = ''
 
-        // Validaciones adicionales
-        if (id == 'fechaIngreso') {
-            const fecha = new Date(input.value);
-            const hoy = new Date();
-            hoy.setHours(0, 0, 0, 0);
-            if (fecha < hoy) {
-                input.classList.add('is-invalid');
-                div.innerHTML = '<span class="badge bg-danger">La fecha ingresada es inválida.</span>';
+            // Validaciones adicionales
+            if (id === 'fechaIngreso') {
+                const fecha = new Date(input.value);
+                const hoy = new Date()
+                hoy.setHours(0, 0, 0, 0)
+                if (fecha < hoy) {
+                    input.classList.add('is-invalid');
+                    div.innerHTML = '<span class="badge bg-danger">La fecha ingresada es inválida.</span>';
+                }
             }
-        }
 
-        if (id == 'fechaSalida') {
-            const fechaIngreso = document.getElementById('fechaIngreso').value;
-            const fechaSalida = input.value;
-            if (fechaSalida < fechaIngreso) {
-                input.classList.add('is-invalid');
-                div.innerHTML = '<span class="badge bg-danger">La fecha de salida no puede ser anterior a la de entrada.</span>';
+            if (id === 'fechaSalida') {
+                const fechaIngreso = document.getElementById('fechaIngreso').value
+                const fechaSalida = input.value;
+                if (fechaSalida < fechaIngreso) {
+                    input.classList.add('is-invalid')
+                    div.innerHTML = '<span class="badge bg-danger">La fecha de salida no puede ser anterior a la de entrada.</span>';
+                }
             }
-        }
 
-        if (id == 'run') {
-            if (!validaRun(input.value)) {
-                input.classList.add('is-invalid');
-                div.innerHTML = '<span class="badge bg-danger">El run no es válido.</span>';
+            if (id === 'run') {
+                if (!validaRun(input.value)) {
+                    input.classList.add('is-invalid')
+                    div.innerHTML = '<span class="badge bg-danger">El run no es válido.</span>'
+                }
             }
-        }
 
-        if (id == 'email') {
-            if (!validaEmail(input.value)) {
-                input.classList.add('is-invalid');
-                div.innerHTML = '<span class="badge bg-danger">El email no tiene el formato correcto.</span>';
+            if (id === 'email') {
+                if (!validaEmail(input.value)) {
+                    input.classList.add('is-invalid')
+                    div.innerHTML = '<span class="badge bg-danger">El email no tiene el formato correcto.</span>'
+                }
             }
         }
     }
 }
 
-
-const opcionesRadio = document.querySelectorAll('input[name="fumador"]');
+const opcionesRadio = document.querySelectorAll('input[name="fumador"]')
 
 opcionesRadio.forEach(opcion => {
     opcion.addEventListener('change', () => {
@@ -63,21 +80,21 @@ opcionesRadio.forEach(opcion => {
             if (opcion.checked && opcion.classList.contains('is-valid')) {
                 opcion.classList.remove('is-valid');
             }
-        });
-    });
-});
+        })
+    })
+})
 
 opcionesRadio.forEach(opcion => {
     opcion.addEventListener('change', () => {
         opcionesRadio.forEach(opcion => {
             if (opcion.checked && opcion.validity.valid) {
-                opcion.classList.add('is-valid');
+                opcion.classList.add('is-valid')
             } else {
-                opcion.classList.remove('is-valid');
+                opcion.classList.remove('is-valid')
             }
-        });
-    });
-});
+        })
+    })
+})
 
 
 
